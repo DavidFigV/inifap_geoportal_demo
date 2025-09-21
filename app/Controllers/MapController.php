@@ -15,24 +15,26 @@ class MapController extends BaseController {
         
         $this->view('mapa/index', [
             'title' => 'Geoportal Agrícola - INIFAP Zacatecas',
-            'cultivos' => $cultivos
+            'cultivos' => $cultivos,
+            'current_page' => 'mapa'
         ]);
     }
     
     public function viewer($cultivo = 'frijol') {
         $cultivos = $this->cultivoModel->getCultivosDisponibles();
         
-        if (!isset($cultivos[$cultivo])) {
+        if (!isset($cultivos[$cultivo]) || !$cultivos[$cultivo]['activo']) {
             $this->redirect('/mapa');
         }
         
         $estadisticas = $this->cultivoModel->getEstadisticas($cultivo);
         
         $this->view('mapa/viewer', [
-            'title' => "Mapa de {$cultivos[$cultivo]['nombre']}",
+            'title' => "Mapa de {$cultivos[$cultivo]['nombre']} - INIFAP Zacatecas",
             'cultivo_actual' => $cultivo,
             'cultivos' => $cultivos,
-            'estadisticas' => $estadisticas
+            'estadisticas' => $estadisticas,
+            'current_page' => 'mapa'
         ]);
     }
 }
