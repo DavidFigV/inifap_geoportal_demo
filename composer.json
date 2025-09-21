@@ -1,0 +1,15 @@
+{
+    "name": "inifap/geoportal",
+    "description": "Geoportal agrícola INIFAP Zacatecas",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "vlucas/phpdotenv": "^5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Core\\": "core/"
+        }
+    }
+}
